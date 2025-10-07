@@ -1,0 +1,74 @@
+<?php
+include 'koneksi.php';
+
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']); 
+    mysqli_query($koneksi, "DELETE FROM siswa WHERE id=$id");
+}
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Hapus Data Siswa</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #74ABE2, #5563DE);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    .box {
+      background: white;
+      padding: 40px 60px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      text-align: center;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    h2 {
+      color: #dc3545;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 25px;
+    }
+
+    a {
+      background-color: #5563DE;
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    a:hover {
+      background-color: #3847c2;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+  <meta http-equiv="refresh" content="2;url=index.php">
+</head>
+<body>
+  <div class="box">
+    <h2>🗑 Data Berhasil Dihapus</h2>
+    <p>Anda akan diarahkan kembali ke halaman utama...</p>
+    <a href="index.php">Kembali Sekarang</a>
+  </div>
+</body>
+</html>
