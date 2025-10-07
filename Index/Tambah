@@ -1,0 +1,140 @@
+<?php
+include 'koneksi.php';
+
+if (isset($_POST['submit'])) {
+    $nama = $_POST['nama'];
+    $kelas = $_POST['kelas'];
+    $jurusan = $_POST['jurusan'];
+
+    mysqli_query($koneksi, "INSERT INTO siswa (nama, kelas, jurusan) VALUES ('$nama', '$kelas', '$jurusan')");
+
+    header("Location: index.php");
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data Siswa</title>
+
+    <!-- CSS Langsung di Dalam File -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            width: 90%;
+            max-width: 420px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2575fc;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        form input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        form input[type="text"]:focus {
+            border-color: #2575fc;
+            box-shadow: 0 0 6px rgba(37, 117, 252, 0.5);
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #2575fc;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background: #1a4fd0;
+            transform: scale(1.03);
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #2575fc;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Pesan error (jika form kosong) */
+        .error {
+            text-align: center;
+            color: #e53935;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            let nama = document.forms["formSiswa"]["nama"].value;
+            let kelas = document.forms["formSiswa"]["kelas"].value;
+            let jurusan = document.forms["formSiswa"]["jurusan"].value;
+            if (nama == "" || kelas == "" || jurusan == "") {
+                alert("⚠️ Semua field wajib diisi!");
+                return false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Tambah Data Siswa</h2>
+        <form name="formSiswa" method="post" onsubmit="return validateForm()">
+            <input type="text" name="nama" placeholder="Nama Lengkap">
+            <input type="text" name="kelas" placeholder="Kelas">
+            <input type="text" name="jurusan" placeholder="Jurusan">
+            <input type="submit" name="submit" value="Simpan">
+        </form>
+        <a href="index.php">← Kembali ke Data Siswa</a>
+    </div>
+</body>
+
+</html>
